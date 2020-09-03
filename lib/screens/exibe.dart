@@ -3,6 +3,7 @@ import 'package:conversor/screens/menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 
 const _tituloAppBar = "Calculadora porder de compra";
 
@@ -21,11 +22,37 @@ class _ExibePaisState extends State<ExibePais> {
   List<DropdownMenuItem<Country>> _dropdownMenuItems;
   Country _selectedCountry;
 
+  static const String testDevice = 'MobileID';
+  BannerAd _bannerAd;
+  
+  static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
+    testDevices: testDevice != null ? <String>[testDevice] : null,
+    nonPersonalizedAds: true,
+    keywords: <String>['Economia','Conversao de moedas', 'dollar to euro', 'brl to dollar', 'brl to eur']
+  );
+
+  BannerAd createBannerAd() {
+    return BannerAd(
+        adUnitId: BannerAd.testAdUnitId,
+        size: AdSize.banner,
+        targetingInfo: targetingInfo,
+        listener: (MobileAdEvent event) {
+          print('BannerAd $event');
+        }
+    );
+  }
   @override
   void initState() {
+        FirebaseAdMob.instance.initialize(appId: BannerAd.testAdUnitId);
+    _bannerAd = createBannerAd()..load()..show(anchorType: AnchorType.bottom);
     _dropdownMenuItems = buildDropdownMenuItems(_countries);
     _selectedCountry = _dropdownMenuItems[0].value;
     super.initState();
+  }
+  @override
+  void dispose() {
+    _bannerAd.dispose();
+    super.dispose();
   }
 
   List<DropdownMenuItem<Country>> buildDropdownMenuItems(List countries) {

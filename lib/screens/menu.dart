@@ -18,7 +18,7 @@ class _ExibeMenuState extends State<ExibeMenu> {
   static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
     testDevices: testDevice != null ? <String>[testDevice] : null,
     nonPersonalizedAds: true,
-    keywords: <String>['KEYWORDS']
+    keywords: <String>['Economia','Conversao de moedas', 'dollar to euro', 'brl to dollar', 'brl to eur']
   );
 
   BannerAd createBannerAd() {
