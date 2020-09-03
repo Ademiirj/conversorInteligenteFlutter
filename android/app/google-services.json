@@ -1,0 +1,41 @@
+{
+  "project_info": {
+    "project_number": "351591184151",
+    "firebase_url": "https://calculadora-poder-de-com-48860.firebaseio.com",
+    "project_id": "calculadora-poder-de-com-48860",
+    "storage_bucket": "calculadora-poder-de-com-48860.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351591184151:android:e29c05bc140212c0f7a952",
+        "android_client_info": {
+          "package_name": "com.example.conversor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351591184151-0eb2fa850uuovhmreup5vdphjfvp77s4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyhDcpmyrubW2boKeq8vVQO6SKervgE1M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351591184151-0eb2fa850uuovhmreup5vdphjfvp77s4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-9053955853889436~7254680702"
+    }
+  ],
+  "configuration_version": "1"
+}

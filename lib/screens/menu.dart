@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 
 class ExibeMenu extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class _ExibeMenuState extends State<ExibeMenu> {
   static int workDay;
   static bool personalCalculate = false;
   
-  const String testDevice = 'MobileID';
+  static const String testDevice = 'MobileID';
   BannerAd _bannerAd;
   
   static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
