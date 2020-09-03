@@ -10,6 +10,39 @@ class _ExibeMenuState extends State<ExibeMenu> {
   static double payment;
   static int workDay;
   static bool personalCalculate = false;
+  
+  const String testDevice = 'MobileID';
+  BannerAd _bannerAd;
+  
+  static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
+    testDevices: testDevice != null ? <String>[testDevice] : null,
+    nonPersonalizedAds: true,
+    keywords: <String>['KEYWORDS']
+  );
+
+  BannerAd createBannerAd() {
+    return BannerAd(
+        adUnitId: BannerAd.testAdUnitId,
+        size: AdSize.banner,
+        targetingInfo: targetingInfo,
+        listener: (MobileAdEvent event) {
+          print('BannerAd $event');
+        }
+    );
+  }
+  
+  @override
+  void initState() {
+    FirebaseAdMob.instance.initialize(appId: BannerAd.testAdUnitId);
+    _bannerAd = createBannerAd()..load()..show(anchorType: AnchorType.bottom);
+    super.initState();
+  }
+  
+  @override
+  void dispose() {
+    _bannerAd.dispose();
+    super.dispose();
+  }
 
   onSwitchValueChanged(bool newVal) {
     setState(() {
