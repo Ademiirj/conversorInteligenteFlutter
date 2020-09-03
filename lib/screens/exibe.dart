@@ -3,7 +3,6 @@ import 'package:conversor/screens/menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
-import 'package:firebase_admob/firebase_admob.dart';
 
 const _tituloAppBar = "Calculadora porder de compra";
 
@@ -55,26 +54,6 @@ class _ExibePaisState extends State<ExibePais> {
 
   @override
   Widget build(BuildContext context) {
-    FirebaseAdMob.instance
-        .initialize(appId: "ca-app-pub-9053955853889436~7254680702");
-    myBanner
-      // typically this happens well before the ad is shown
-      ..load()
-      ..show(
-        // Positions the banner ad 60 pixels from the bottom of the screen
-        anchorOffset: 60.0,
-        // Positions the banner ad 10 pixels from the center of the screen to the right
-        horizontalCenterOffset: 10.0,
-        // Banner Position
-        anchorType: AnchorType.bottom,
-      );
-    myInterstitial
-      ..load()
-      ..show(
-        anchorType: AnchorType.bottom,
-        anchorOffset: 0.0,
-        horizontalCenterOffset: 0.0,
-      );
     return Scaffold(
       appBar: AppBar(title: Text(_tituloAppBar)),
       drawer: ExibeMenu(),
@@ -175,41 +154,3 @@ String calculateResult(Country pais, double valor) {
 
   return "Você ira demorar $day dias $hour horas e $minute minutos trabalhados para conquistar este valor";
 }
-
-MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
-  keywords: <String>[
-    'economy',
-    'economia',
-    'conversao de moeda',
-    'conversao inteligente',
-    'moeda',
-    'valor do dolar',
-    'dolar real',
-  ],
-  contentUrl: 'https://flutter.io',
-  childDirected: false,
-  testDevices: <String>[], // Android emulators are considered test devices
-);
-
-BannerAd myBanner = BannerAd(
-  // Replace the testAdUnitId with an ad unit id from the AdMob dash.
-  // https://developers.google.com/admob/android/test-ads
-  // https://developers.google.com/admob/ios/test-ads
-  adUnitId: BannerAd.testAdUnitId,
-  size: AdSize.smartBanner,
-  targetingInfo: targetingInfo,
-  listener: (MobileAdEvent event) {
-    print("BannerAd event is $event");
-  },
-);
-
-InterstitialAd myInterstitial = InterstitialAd(
-  // Replace the testAdUnitId with an ad unit id from the AdMob dash.
-  // https://developers.google.com/admob/android/test-ads
-  // https://developers.google.com/admob/ios/test-ads
-  adUnitId: InterstitialAd.testAdUnitId,
-  targetingInfo: targetingInfo,
-  listener: (MobileAdEvent event) {
-    print("InterstitialAd event is $event");
-  },
-);
